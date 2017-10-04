@@ -58,15 +58,15 @@ publishing {
 	}
 }
 
-model {
-    tasks.generatePomFileForMyPublicationPublication {
-        destination = file("$buildDir/libs/${project.name}-${version}.pom")
-    }
-
-	tasks.assemble {
-		dependsOn tasks.generatePomFileForMyPublicationPublication
-	}
-}
+//model {
+//    tasks.generatePomFileForMyPublicationPublication {
+//        destination = file("$buildDir/libs/${project.name}-${version}.pom")
+//    }
+//
+//	tasks.assemble {
+//		dependsOn tasks.generatePomFileForMyPublicationPublication
+//	}
+//}
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
