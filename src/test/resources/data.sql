@@ -4,9 +4,9 @@ insert into code_list (id, type, code, description, sequence, active) values
     (1, 'org.crygier.graphql.model.starwars.Gender', 'Female', 'Female', 2, true);
 
 -- Insert Droids
-insert into character (id, name, primary_function, dtype) values
-    ('2000', 'C-3PO', 'Protocol', 'Droid'),
-    ('2001', 'R2-D2', 'Astromech', 'Droid');
+insert into character (id, name, primary_function, dtype, secret) values
+    ('2000', 'C-3PO', 'Protocol', 'Droid', 'access code'),
+    ('2001', 'R2-D2', 'Astromech', 'Droid', 'hidden message');
 
 -- Insert Humans
 insert into character (id, name, home_planet, favorite_droid_id, dtype, gender_code_id) values
@@ -101,6 +101,9 @@ insert into character_appears_in (character_id, appears_in) values
     ('2001', 4),
     ('2001', 5),
     ('2001', 6);
+
+insert into document (id, name, droid_id) values
+    (10, 'secret message', '2001');
 
 -- Things
 insert into thing (id, type) values
