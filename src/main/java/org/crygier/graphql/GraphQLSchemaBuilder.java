@@ -158,6 +158,12 @@ public class GraphQLSchemaBuilder {
     }
 
     private GraphQLType getAttributeType(Attribute attribute) {
+
+        final String declaringType = attribute.getDeclaringType().getJavaType().getName(); // fully qualified name of the entity class
+        final String declaringMember = attribute.getJavaMember().getName(); // field name in the entity class
+
+        log.info("getting attribute type for field '" + declaringMember + "' of entity class '" + declaringType + "'");
+
         if (attribute.getPersistentAttributeType() == Attribute.PersistentAttributeType.BASIC) {
             if (String.class.isAssignableFrom(attribute.getJavaType()))
                 return Scalars.GraphQLString;
@@ -195,9 +201,6 @@ public class GraphQLSchemaBuilder {
             Type foreignType = ((PluralAttribute) attribute).getElementType();
             return new GraphQLList(getTypeFromJavaType(foreignType.getJavaType()));
         }
-
-        final String declaringType = attribute.getDeclaringType().getJavaType().getName(); // fully qualified name of the entity class
-        final String declaringMember = attribute.getJavaMember().getName(); // field name in the entity class
 
         throw new UnsupportedOperationException(
                 "Attribute could not be mapped to GraphQL: field '" + declaringMember + "' of entity class '"+ declaringType +"'");
