@@ -425,6 +425,51 @@ class StarwarsQueryExecutorTest extends Specification {
         result == expected;
     }
 
+    def 'Respect annotated ignore fields'() {
+        given:
+        def query = '''
+        {
+            Droid(name: "C-3PO") {
+                name
+                secret
+            }
+        }
+        '''
+        def expected = [
+                "Validation error of type FieldUndefined: Field 'secret' in type 'Droid' is undefined"
+                ]
+
+        when:
+        def result = executor.execute(query).errors.message
+
+        then:
+        result == expected
+    }
+
+    def 'Respect nested annotated ignore fields'() {
+        given:
+        def query = '''
+        {
+            Human(name: "Luke Skywalker") {
+                favoriteDroid {
+                    name 
+                    primaryFunction 
+                    secret
+                }
+            }
+        }
+        '''
+        def expected = [
+                "Validation error of type FieldUndefined: Field 'secret' in type 'Droid' is undefined"
+        ]
+
+        when:
+        def result = executor.execute(query).errors.message
+
+        then:
+        result == expected
+    }
+
     @Autowired
     private EntityManager em;
 
