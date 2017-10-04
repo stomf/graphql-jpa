@@ -15,14 +15,12 @@ class Droid extends Character {
     @SchemaDocumentation("Documents the primary purpose this droid serves")
     String primaryFunction;
 
-    @OneToMany(mappedBy = "droid")
-    @SchemaDocumentation("The droid carrying this document")
-    List<Document> documents = new ArrayList<Document>();
-
-    @GraphQLIgnore
-    @SchemaDocumentation("Secret! Graphql should not map this")
-    String secret;
-
+    // this causes an exception in GraphQLSchemaBuilder.getAttributeType
+    // byte array not used very much in graphql.
+    // That's fine, becuase graphql isn't designed to send large chunks of data.
+    // It should probably instead post a url where the file can be obtained.
+    // But the @GraphQLIgnore annotation should allow byte arrays to be defined in the entities
+    // without throwing an exception.
     @GraphQLIgnore
     byte[] data;
 
