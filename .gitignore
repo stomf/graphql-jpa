@@ -7,3 +7,5 @@ build/
 .project
 .settings/
 classes/
+gradle.properties
+out/
