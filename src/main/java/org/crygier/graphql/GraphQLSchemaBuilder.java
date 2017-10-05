@@ -142,6 +142,12 @@ public class GraphQLSchemaBuilder {
                 });
             }
 
+//            log.info("--GraphQLFieldDefinitions for attribute " + attribute.getName() + " --");
+//            for (GraphQLArgument argument : arguments) {
+//                log.info("argument:" + argument.getName() + ", desc:" + argument.getDescription() + ", type:" + argument.getType().getName());
+//            }
+//            log.info ("---------------");
+
             return GraphQLFieldDefinition.newFieldDefinition()
                     .name(attribute.getName())
                     .description(getSchemaDocumentation(attribute.getJavaMember()))
@@ -154,7 +160,7 @@ public class GraphQLSchemaBuilder {
     }
 
     private Stream<Attribute> findBasicAttributes(Collection<Attribute> attributes) {
-        return attributes.stream().filter(it -> it.getPersistentAttributeType() == Attribute.PersistentAttributeType.BASIC);
+        return attributes.stream().filter(this::isNotIgnored).filter(it -> it.getPersistentAttributeType() == Attribute.PersistentAttributeType.BASIC);
     }
 
     private GraphQLType getAttributeType(Attribute attribute) {
