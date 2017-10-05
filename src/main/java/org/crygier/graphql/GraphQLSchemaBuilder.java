@@ -142,12 +142,6 @@ public class GraphQLSchemaBuilder {
                 });
             }
 
-//            log.info("--GraphQLFieldDefinitions for attribute " + attribute.getName() + " --");
-//            for (GraphQLArgument argument : arguments) {
-//                log.info("argument:" + argument.getName() + ", desc:" + argument.getDescription() + ", type:" + argument.getType().getName());
-//            }
-//            log.info ("---------------");
-
             return GraphQLFieldDefinition.newFieldDefinition()
                     .name(attribute.getName())
                     .description(getSchemaDocumentation(attribute.getJavaMember()))
