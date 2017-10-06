@@ -19,7 +19,6 @@ class Droid extends Character {
     @GraphQLIgnore
     byte[] data;
 
-    @GraphQLIgnore
     @ElementCollection(targetClass=String.class)
     List<String> codas = new ArrayList<String>();
 }
