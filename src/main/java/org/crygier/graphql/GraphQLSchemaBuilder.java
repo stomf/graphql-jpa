@@ -193,6 +193,8 @@ public class GraphQLSchemaBuilder {
             return new GraphQLTypeReference(foreignType.getName());
         } else if (attribute.getPersistentAttributeType() == Attribute.PersistentAttributeType.ELEMENT_COLLECTION) {
             Type foreignType = ((PluralAttribute) attribute).getElementType();
+            log.error("-------------HERE!---------------");
+            log.error("Type for element collection: " + foreignType.getJavaType());
             return new GraphQLList(getTypeFromJavaType(foreignType.getJavaType()));
         }
 

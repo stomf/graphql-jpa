@@ -4,6 +4,7 @@ import groovy.transform.CompileStatic
 import org.crygier.graphql.annotation.GraphQLIgnore
 import org.crygier.graphql.annotation.SchemaDocumentation
 
+import javax.persistence.ElementCollection
 import javax.persistence.Entity
 import javax.persistence.OneToMany
 
@@ -17,4 +18,8 @@ class Droid extends Character {
 
     @GraphQLIgnore
     byte[] data;
+
+    @GraphQLIgnore
+    @ElementCollection(targetClass=String.class)
+    List<String> codas = new ArrayList<String>();
 }
