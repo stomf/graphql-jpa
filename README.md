@@ -1,3 +1,20 @@
+Tom's Fork of GraphQL for JPA
+=============================
+
+I was trying to use graphql-jpa to map a schema which contained byte arrays. Graphql doesn't support that data type;
+if there's something big in the schema, like a file, then graphql should instead respond with a url where the file
+can be obtained. Graphql was not designed to transfer large chunks of data.
+
+I thought I could use graphql without changing my schema by adding @GraphQLIgnore annotations to the byte array fields.
+However there seems to be a bug in graphql-jpa which does not respect the annotation in some circumstances. This fork 
+contains a fix for that bug.
+
+This fork also supports collections of base objects, such as a list of strings, which the original branch does not have
+yet.
+
+Thanks to jcrygier for the original project, and Datagraphic for letting me work on open source projects during my work
+hours.
+
 GraphQL for JPA
 ===============
 
