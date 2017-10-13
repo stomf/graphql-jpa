@@ -12,6 +12,8 @@ contains a fix for that bug.
 This fork also supports collections of base objects, such as a list of strings, which the original branch does not have
 yet.
 
+Both of these changes have now been adopted in jcrygier's branch, there is nothing unique in this fork anymore - use that one intead.
+
 Thanks to jcrygier for the original project, and Datagraphic for letting me work on open source projects during my work
 hours.
 
